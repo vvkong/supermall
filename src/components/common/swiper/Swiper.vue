@@ -11,7 +11,7 @@
         <slot name="indicator" v-if="showIndicator && swipeItemCount>1">
           <div v-for="(item, index) in swipeItemCount" :key="index"
             class="indicator-item"
-            :class="{active: index==currentIndex}">
+            :class="{active: index==currentIndex-1}">
           </div>
         </slot>
       </div>
@@ -50,8 +50,14 @@ export default {
     }
   },
   mounted() {
-    this.handleDom();
+
+  },
+  updated() {
+    if( this.swipeItemCount <= 0 ) {
+      this.handleDom();
+    }
     if( this.swipeItemCount > 1 ) {
+      this.stopTimer();
       this.startTimer();
     }
   },
@@ -127,7 +133,10 @@ export default {
     },
 
     stopTimer() {
-      window.clearInterval(this.timer);
+      if( this.timer ) {
+        window.clearInterval(this.timer);
+        this.timer = null;
+      }
     },
 
     checkPosition() {

@@ -2,10 +2,10 @@
     <TabBar>
       <TabBarItem path="/home">
         <template v-slot:item-icon>
-            <img class="item-icon" src="~@/assets/image/home_normal.svg">
+            <img class="item-icon" src="~@/assets/image/tabbar/home_normal.svg">
         </template>
         <template v-slot:item-icon-active>
-            <img class="item-icon" src="~@/assets/image/home_selected.svg">
+            <img class="item-icon" src="~@/assets/image/tabbar/home_selected.svg">
         </template>
         <template v-slot:item-text>
             <div>首页</div>
@@ -14,10 +14,10 @@
 
       <TabBarItem path="/category">
         <template v-slot:item-icon>
-            <img class="item-icon" src="~@/assets/image/category_normal.svg">
+            <img class="item-icon" src="~@/assets/image/tabbar/category_normal.svg">
         </template>
         <template v-slot:item-icon-active>
-            <img class="item-icon" src="~@/assets/image/category_selected.svg">
+            <img class="item-icon" src="~@/assets/image/tabbar/category_selected.svg">
         </template>
         <template v-slot:item-text>
             <div>分类</div>
@@ -26,10 +26,10 @@
 
       <TabBarItem path="/cart">
         <template v-slot:item-icon>
-            <img class="item-icon" src="~@/assets/image/cart_normal.svg">
+            <img class="item-icon" src="~@/assets/image/tabbar/cart_normal.svg">
         </template>
         <template v-slot:item-icon-active>
-            <img class="item-icon" src="~@/assets/image/cart_selected.svg">
+            <img class="item-icon" src="~@/assets/image/tabbar/cart_selected.svg">
         </template>
         <template v-slot:item-text>
             <div>购物车</div>
@@ -38,10 +38,10 @@
 
       <TabBarItem path="/profile">
         <template v-slot:item-icon>
-            <img class="item-icon" src="~@/assets/image/profile_normal.svg">
+            <img class="item-icon" src="~@/assets/image/tabbar/profile_normal.svg">
         </template>
         <template v-slot:item-icon-active>
-            <img class="item-icon" src="~@/assets/image/profile_selected.svg">
+            <img class="item-icon" src="~@/assets/image/tabbar/profile_selected.svg">
         </template>
         <template v-slot:item-text>
             <div>我的</div>
