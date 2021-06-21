@@ -1,5 +1,5 @@
 <template>
-    <TabBar>
+    <TabBar class="tab-bar">
       <TabBarItem path="/home">
         <template v-slot:item-icon>
             <img class="item-icon" src="~@/assets/image/tabbar/home_normal.svg">
@@ -63,11 +63,14 @@ export default {
 </script>
 
 <style scope>
-    .item-icon {
-        width: 22px;
-        height: 22px;
-        vertical-align: middle;
-        margin-top: 3px;
-        margin-bottom: 2px;
-    }
+  .tab-bar {
+    background: white;
+  }
+  .item-icon {
+      width: 22px;
+      height: 22px;
+      vertical-align: middle;
+      margin-top: 3px;
+      margin-bottom: 2px;
+  }
 </style>
