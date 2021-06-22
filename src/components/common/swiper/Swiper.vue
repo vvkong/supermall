@@ -110,7 +110,7 @@ export default {
       // 启动定时器自动切换
       this.startTimer();
 
-      console.log(`this.currentIndex: ${this.currentIndex}, swipeItemCount: ${this.swipeItemCount}`);
+      //console.log(`this.currentIndex: ${this.currentIndex}, swipeItemCount: ${this.swipeItemCount}`);
     },
 
     scrollContent(position) {
@@ -149,7 +149,7 @@ export default {
           this.currentIndex = 1;
         }
         this.setTransform(-this.currentIndex * this.swiperWidth);
-        console.log(`checkPosition, this.currentIndex: ${this.currentIndex}`);
+        //console.log(`checkPosition, this.currentIndex: ${this.currentIndex}`);
 
         this.$emit('transitionEnd', this.currentIndex-1);
 

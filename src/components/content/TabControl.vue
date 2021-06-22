@@ -45,5 +45,6 @@ export default {
   }
   .tab .active {
     border-bottom: 2px solid blue;
+    color: blue;
   }
 </style>
