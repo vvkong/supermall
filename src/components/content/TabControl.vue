@@ -25,7 +25,10 @@ export default {
     onItemClick(index) {
       this.currentIndex = index;
       this.$emit("tabClick", this.currentIndex);
-    }
+    },
+    setCurrentIndex(index) {
+      this.currentIndex = index;
+    },
   },
 }
 </script>

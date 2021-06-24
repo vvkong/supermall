@@ -14,9 +14,13 @@ function mockData(app) {
     console.log(goods[req.query.type].length)
     console.log("====================")
     let data = [];
-    if( goods[req.query.type].length > req.query.page ) {
-      data = goods[req.query.type].splice(req.query.page, req.query.page+10);
+    const pageSize = 10;
+    const start = req.query.page*pageSize;
+    const end = Math.min(start+pageSize, goods[req.query.type].length);
+    for( let i=start; i<end; i++ ) {
+      data.push(goods[req.query.type][i]);
     }
+    console.log("start: " + start + ", end: " + end + ", response length: " + data.length);
     res.json({
         code: 0,
         msg: 'success',

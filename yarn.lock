@@ -801,6 +801,44 @@
     "@babel/helper-validator-identifier" "^7.14.0"
     to-fast-properties "^2.0.0"
 
+"@better-scroll/core@^2.4.0":
+  version "2.4.0"
+  resolved "https://registry.nlark.com/@better-scroll/core/download/@better-scroll/core-2.4.0.tgz?cache=0&sync_timestamp=1624435821857&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40better-scroll%2Fcore%2Fdownload%2F%40better-scroll%2Fcore-2.4.0.tgz#dbe0d50d6edd91196fd37a4e6d9f29a3a793db55"
+  dependencies:
+    "@better-scroll/shared-utils" "^2.4.0"
+
+"@better-scroll/core@^2.4.1":
+  version "2.4.1"
+  resolved "https://registry.nlark.com/@better-scroll/core/download/@better-scroll/core-2.4.1.tgz#1f67a9cfe6738f870be5b90b13aafcc188a01e3b"
+  dependencies:
+    "@better-scroll/shared-utils" "^2.4.1"
+
+"@better-scroll/observe-dom@^2.4.1":
+  version "2.4.1"
+  resolved "https://registry.nlark.com/@better-scroll/observe-dom/download/@better-scroll/observe-dom-2.4.1.tgz?cache=0&sync_timestamp=1624517055631&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40better-scroll%2Fobserve-dom%2Fdownload%2F%40better-scroll%2Fobserve-dom-2.4.1.tgz#d918c1fc2de4e3fa32b302a63c45c9433cf41a24"
+  dependencies:
+    "@better-scroll/core" "^2.4.1"
+
+"@better-scroll/observe-image@^2.4.1":
+  version "2.4.1"
+  resolved "https://registry.nlark.com/@better-scroll/observe-image/download/@better-scroll/observe-image-2.4.1.tgz?cache=0&sync_timestamp=1624517054103&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40better-scroll%2Fobserve-image%2Fdownload%2F%40better-scroll%2Fobserve-image-2.4.1.tgz#da600ec81c880fda3d389678313448692bf9e011"
+  dependencies:
+    "@better-scroll/core" "^2.4.1"
+
+"@better-scroll/pull-up@^2.4.0":
+  version "2.4.0"
+  resolved "https://registry.nlark.com/@better-scroll/pull-up/download/@better-scroll/pull-up-2.4.0.tgz#074819b66228543e3d9bcc1d9108e2953b0add89"
+  dependencies:
+    "@better-scroll/core" "^2.4.0"
+
+"@better-scroll/shared-utils@^2.4.0":
+  version "2.4.0"
+  resolved "https://registry.nlark.com/@better-scroll/shared-utils/download/@better-scroll/shared-utils-2.4.0.tgz?cache=0&sync_timestamp=1624435821085&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40better-scroll%2Fshared-utils%2Fdownload%2F%40better-scroll%2Fshared-utils-2.4.0.tgz#8f1a59be7032042def9fe968ba6a4f4d3a11ee3c"
+
+"@better-scroll/shared-utils@^2.4.1":
+  version "2.4.1"
+  resolved "https://registry.nlark.com/@better-scroll/shared-utils/download/@better-scroll/shared-utils-2.4.1.tgz#b5e4e751a023180f1123d2c3773c75a863f71f77"
+
 "@hapi/address@2.x.x":
   version "2.1.4"
   resolved "https://registry.nlark.com/@hapi/address/download/@hapi/address-2.1.4.tgz#5d67ed43f3fd41a69d4b9ff7b56e7c0d1d0a81e5"
