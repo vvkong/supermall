@@ -5,9 +5,12 @@
         <span>蘑菇街</span>
       </template>
     </NavBar>
+    <TabControl ref="tabControlStiky" v-show="showStikyTabControl" class="tab-control tab-control-stiky" :tabTitles="['流行','新款','精选']" @tabClick="tabClick"></TabControl>
+
     <Scroller
         class="scroller" ref="scroller"
         :observeImage="true"
+        :probeType="3"
         @scroll="onScroll"
         @scrollEnd="onScrollEnd"
         @pullingUp="onPullingUp">
@@ -17,7 +20,6 @@
       <TabControl ref="tabControl" class="tab-control" :tabTitles="['流行','新款','精选']" @tabClick="tabClick"></TabControl>
       <GoodsList :goodsList="goods[type].data"></GoodsList>
     </Scroller>
-    <TabControl ref="tabControlStiky" v-show="showStikyTabControl" class="tab-control tab-control-stiky" :tabTitles="['流行','新款','精选']" @tabClick="tabClick"></TabControl>
     <BackTop @click.native="backTop" v-show="showBackTop"></BackTop>
   </div>
 </template>
@@ -110,7 +112,7 @@ export default {
       this.scroller.scrollTo(0,0);
     },
     onScroll(position, y) {
-      //console.log(this.scroller.getY()+", " + y+", "+position + ", "+ this.tabControlEl.offsetTop);
+      //console.log("y: " + y+", " + ", offsetTop"+ this.tabControlEl.offsetTop);
       this.showStikyTabControl = -y >= this.tabControlEl.offsetTop;
       this.showBackTop = -y > 600;
     },
@@ -154,23 +156,16 @@ export default {
   }
   .nav-bar {
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 2;
-    background: white;
-  }
-  .tab-control {
-    background: white;
   }
   .tab-control-stiky {
-    position: absolute;
-    top: 48px;
-    left: 0;
-    right: 0;
-    z-index: 2;
+    position: relative;
+    z-index: 10;
   }
+  .tab-control {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
   .scroller {
     position: absolute;
     left: 0;

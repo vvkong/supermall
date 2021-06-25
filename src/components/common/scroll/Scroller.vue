@@ -32,7 +32,12 @@ export default {
     observeImage: {
       type: Boolean,
       default: false,
+    },
+    pullUpLoad: {
+      type: Boolean,
+      default: true,
     }
+
   },
   data() {
     return {
@@ -46,16 +51,20 @@ export default {
       observeDOM: true, // 开启 observe-dom 插件
       scrollY: true,
       click: true,
-      pullUpLoad: true,
+      pullUpLoad: this.pullUpLoad,
       probeType: this.probeType,
     });
-    this.bscroll.on('scroll', (position) => {
-      //console.log(position.x, position.y)
-      this.$emit('scroll', position, this.bscroll.y);
-    });
-    this.bscroll.on('pullingUp', () => {
-      this.$emit("pullingUp");
-    });
+    if( this.probeType == 2 || this.probeType == 3 ) {
+      this.bscroll.on('scroll', (position) => {
+        //console.log(position.x, position.y)
+        this.$emit('scroll', position, this.bscroll.y);
+      });
+    }
+    if( this.pullUpLoad ) {
+      this.bscroll.on('pullingUp', () => {
+        this.$emit("pullingUp");
+      });
+    }
     this.bscroll.on('scrollEnd', () => {
       this.$emit("scrollEnd", this.bscroll.y);
     });
@@ -86,7 +95,6 @@ export default {
 
 <style scoped>
   .pullup-wrapper {
-    height: 100%;
     overflow: hidden;
   }
 
