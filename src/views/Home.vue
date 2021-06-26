@@ -18,7 +18,7 @@
       <HomeRecommend :recommendData="recommend"></HomeRecommend>
       <FeatureView></FeatureView>
       <TabControl ref="tabControl" class="tab-control" :tabTitles="['流行','新款','精选']" @tabClick="tabClick"></TabControl>
-      <GoodsList :goodsList="goods[type].data"></GoodsList>
+      <GoodsList :goodsList="goods[type].data" @onItemClick="onItemClick"></GoodsList>
     </Scroller>
     <BackTop @click.native="backTop" v-show="showBackTop"></BackTop>
   </div>
@@ -69,9 +69,11 @@ export default {
       },
       showBackTop: false,
       showStikyTabControl: false,
+      posY: 0,
     }
   },
   created() {
+    console.log('home created')
     this.loadHomeTopData();
 
     this.loadGoods('pop', 0);
@@ -85,6 +87,17 @@ export default {
 
     this.scroller = this.$refs.scroller;
     //console.log(this.tabControlEl);
+  },
+  activated() {
+    //console.log('home activated: ' + this.posY + ", "+this.scroller.getY() + ", sh: " + this.scroller.getScrollerHeight())
+    this.onScrollEnd(this.scroller.getY());
+    this.scroller.refresh();
+    //console.log(this.scroller.getScrollerHeight())
+    this.scroller.scrollTo(0, this.posY, 0);
+  },
+  deactivated() {
+    this.posY = this.scroller.getY();
+    //console.log('home deactivated: '+this.posY+ ", sh: " + this.scroller.getScrollerHeight())
   },
   methods: {
     tabClick(index) {
@@ -111,13 +124,16 @@ export default {
     backTop() {
       this.scroller.scrollTo(0,0);
     },
+    onItemClick(item) {
+      this.$router.push('/detail/'+item.id);
+    },
     onScroll(position, y) {
       //console.log("y: " + y+", " + ", offsetTop"+ this.tabControlEl.offsetTop);
-      this.showStikyTabControl = -y >= this.tabControlEl.offsetTop;
-      this.showBackTop = -y > 600;
+      this.onScrollEnd(y);
     },
     onScrollEnd(y) {
       this.showBackTop = -y > 600;
+      this.showStikyTabControl = -y >= this.tabControlEl.offsetTop;
     },
     onPullingUp() {
       this.loadGoods(this.type, this.goods[this.type].page+1, true);

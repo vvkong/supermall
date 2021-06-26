@@ -1,6 +1,6 @@
 <template>
   <div class="goods-list">
-    <GoodsItem v-for="item in goodsList" :goods="item" :key="item.id"></GoodsItem>
+    <GoodsItem v-for="item in goodsList" :goods="item" :key="item.id" @click.native="onItemClick(item)"></GoodsItem>
   </div>
 </template>
 <script>
@@ -17,7 +17,12 @@ export default {
   },
   components: {
     GoodsItem,
-  }
+  },
+  methods: {
+    onItemClick(item) {
+      this.$emit("onItemClick", item);
+    }
+  },
 }
 </script>
 <style scoped>

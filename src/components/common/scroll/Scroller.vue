@@ -88,6 +88,12 @@ export default {
         return this.bscroll.y;
       }
       return 0;
+    },
+    getScrollerHeight() {
+      if( this.bscroll ) {
+        return this.bscroll.scrollerHeight;
+      }
+      return 0;
     }
   },
 }
