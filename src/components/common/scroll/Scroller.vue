@@ -2,7 +2,7 @@
   <div ref="scroll" class="pullup-wrapper">
       <div class="pullup-content">
         <slot></slot>
-        <div class="pullup-tips">
+        <div class="pullup-tips" v-if="pullUpLoad">
           <div v-if="!isPullUpLoad" class="before-trigger">
             <span class="pullup-txt">上拉加载更多</span>
           </div>
