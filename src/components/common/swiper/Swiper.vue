@@ -21,6 +21,10 @@
 export default {
   name: "Swiper",
   props: {
+    defaultCurrentIndex: {
+      type: Number,
+      default: 0,
+    },
     moveRatio: {
       type: Number,
       default: 0.25,
@@ -40,7 +44,7 @@ export default {
   },
   data() {
     return {
-      currentIndex: 0,
+      currentIndex: 1,
       swipeItemCount: 0,
       swiperWidth: 0,
       swipeSyle: {},
@@ -50,29 +54,39 @@ export default {
     }
   },
   mounted() {
-
+    this.swiperEl = this.$refs.swiper;
+    if( this.swiperEl.children.length > 0 ) {
+      this.initSwiperItemIfNeed();
+    }
+    //console.log(`mounted this.swipeItemCount: ${this.swipeItemCount}`)
   },
   updated() {
-    if( this.swipeItemCount <= 0 ) {
-      this.handleDom();
-    }
-    if( this.swipeItemCount > 1 ) {
-      this.stopTimer();
-      this.startTimer();
-    }
+    this.initSwiperItemIfNeed();
+    //console.log(`updated this.swipeItemCount: ${this.swipeItemCount}`)
   },
   methods: {
+    initSwiperItemIfNeed() {
+      if( this.swipeItemCount <= 0 ) {
+        this.handleDom();
+      }
+      if( this.swipeItemCount > 1 ) {
+        this.stopTimer();
+        this.startTimer();
+      }
+    },
     handleDom() {
-      const swiper = this.$refs.swiper;
+      const swiper = this.swiperEl;
       this.swiperWidth = swiper.offsetWidth;
       this.swipeSyle = swiper.style;
       this.swipeItemCount = swiper.children.length;
+      //console.log(`handleDom, this.swipeItemCount: ${this.swipeItemCount}`)
       if( this.swipeItemCount > 1 ) {
         let cloneFirst = swiper.children[0].cloneNode(true);
         let cloneLast = swiper.children[this.swipeItemCount-1].cloneNode(true);
         swiper.insertBefore(cloneLast, swiper.children[0]);
         swiper.appendChild(cloneFirst);
         this.currentIndex = 1;
+        //this.currentIndex = Math.min(this.defaultCurrentIndex + 1, this.swipeItemCount);
         this.setTransform(-this.currentIndex * this.swiperWidth);
       }
     },
@@ -169,14 +183,29 @@ export default {
       this.swipeSyle.transform=`translate3d(${postion}px,0,0)`;
       this.swipeSyle['-webkit-transform']=`translate3d(${postion}px,0,0)`;
       this.swipeSyle['-ms-transform']=`translate3d(${postion}px,0,0)`;
-    }
-  },
+    },
 
+    beforeDestroy() {
+      this.stopTimer();
+    },
+  },
+  watch: {
+    defaultCurrentIndex: function(newValue) {
+      //console.log(`newValue: ${newValue}`)
+      if( this.swipeItemCount > 1 ) {
+        this.currentIndex = newValue+1;
+        this.stopTimer();
+        this.scrollContent(-this.currentIndex * this.swiperWidth);
+        this.startTimer();
+      }
+    }
+  }
 }
 </script>
 
 <style scope>
   .swiper-container {
+    width: 100%;
     position: relative;
     overflow: hidden;
   }
