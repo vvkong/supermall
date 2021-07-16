@@ -11,16 +11,17 @@
 
       <DetailSwiper v-if="showBanner" :banners="banners" :defaultCurrentIndex="0" :key="1"></DetailSwiper>
       <DetailSwiper v-else :banners="skuBanners" :defaultCurrentIndex="defaultCurrentIndex" :key="2"></DetailSwiper>
-
       <SkuInfoBar :skuBarInfo="skuBarInfo" :topBanner="topBanner"
         @selectSkuEvent="onSelectSkuEvent"></SkuInfoBar>
+      <div class="line"></div>
+      <ProductInfo :productInfo="productInfo"></ProductInfo>
     </Scroller>
     <BottomBar class="detail-bottom-bar" :bottomBar="bottomBar"></BottomBar>
     <BackTop @click.native="backTop" v-show="showBackTop"></BackTop>
   </div>
 </template>
 <script>
-import {getGoodsDetail} from '@/network/home.js'
+import {getGoodsDetail,ProductInfoEntity} from '@/network/detail.js'
 
 import Scroller from '@/components/common/scroll/Scroller'
 import BackTop from '@/components/content/BackTop'
@@ -29,6 +30,7 @@ import DetailNavBar from './DetailNavBar'
 import DetailSwiper from './DetailSwiper'
 import SkuInfoBar from './SkuInfoBar'
 import BottomBar from './BottomBar'
+import ProductInfo from './ProductInfo'
 export default {
   name: "Detail",
   components: {
@@ -38,6 +40,7 @@ export default {
     BackTop,
     SkuInfoBar,
     BottomBar,
+    ProductInfo,
   },
   data() {
     return {
@@ -49,6 +52,7 @@ export default {
       bottomBar: {},
       defaultCurrentIndex: 0,
       showBanner: true,
+      productInfo: {},
     };
   },
   created() {
@@ -63,7 +67,7 @@ export default {
       this.topBanner = banners;
       this.skuBarInfo = res.data.skuBarInfo;
       this.bottomBar = res.data.bottomBar;
-      console.log(res.data);
+      this.productInfo = new ProductInfoEntity(res.data.itemInfo, res.data.skuInfo, res.data.normalPrice, res.data.promotion, res.data.itemServices);
 
     }).catch(err=>{
       console.log(err)
@@ -120,5 +124,9 @@ export default {
     bottom: 0;
     width: 100%;
     z-index: 3;
+  }
+  .line {
+    border-bottom: 1px solid #eeeeee;
+    margin-left: 15px;
   }
 </style>

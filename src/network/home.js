@@ -18,18 +18,7 @@ function getGoodsList(type, page) {
   });
 }
 
-function getGoodsDetail(id) {
-  return request({
-    method: 'GET',
-    url: '/detail',
-    params: {
-      id
-    }
-  })
-}
-
 export {
   getHomeIndexData,
   getGoodsList,
-  getGoodsDetail,
 }
