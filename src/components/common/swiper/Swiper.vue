@@ -7,8 +7,8 @@
           <slot>
           </slot>
       </div>
-      <div class="indicator">
-        <slot name="indicator" v-if="showIndicator && swipeItemCount>1">
+      <div class="indicator" v-if="showIndicator&&swipeItemCount>1">
+        <slot name="indicator">
           <div v-for="(item, index) in swipeItemCount" :key="index"
             class="indicator-item"
             :class="{active: index==currentIndex-1}">
@@ -32,6 +32,10 @@ export default {
     animTime: {
       type: Number,
       default: 200,
+    },
+    autoSlid: {
+      type: Boolean,
+      default: true,
     },
     interval: {
       type: Number,
@@ -140,6 +144,9 @@ export default {
     },
 
     startTimer() {
+      if( !this.autoSlid ) {
+        return;
+      }
       this.timer = window.setInterval(()=>{
         this.currentIndex++;
         this.scrollContent(-this.currentIndex*this.swiperWidth);

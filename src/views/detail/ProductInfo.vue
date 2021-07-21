@@ -44,7 +44,6 @@
         <img class="arrow-right" src="~@/assets/image/common/arrow-right.svg" alt="">
       </div>
     </div>
-    <div class="divider"></div>
   </div>
 </template>
 <script>

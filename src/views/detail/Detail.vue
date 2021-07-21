@@ -15,6 +15,9 @@
         @selectSkuEvent="onSelectSkuEvent"></SkuInfoBar>
       <div class="line"></div>
       <ProductInfo :productInfo="productInfo"></ProductInfo>
+      <div class="divider"></div>
+      <CommentView :commentInfo="commentInfo"></CommentView>
+      <div class="divider"></div>
     </Scroller>
     <BottomBar class="detail-bottom-bar" :bottomBar="bottomBar"></BottomBar>
     <BackTop @click.native="backTop" v-show="showBackTop"></BackTop>
@@ -31,6 +34,7 @@ import DetailSwiper from './DetailSwiper'
 import SkuInfoBar from './SkuInfoBar'
 import BottomBar from './BottomBar'
 import ProductInfo from './ProductInfo'
+import CommentView from './CommentView'
 export default {
   name: "Detail",
   components: {
@@ -41,6 +45,7 @@ export default {
     SkuInfoBar,
     BottomBar,
     ProductInfo,
+    CommentView,
   },
   data() {
     return {
@@ -53,6 +58,7 @@ export default {
       defaultCurrentIndex: 0,
       showBanner: true,
       productInfo: {},
+      commentInfo: {},
     };
   },
   created() {
@@ -68,7 +74,7 @@ export default {
       this.skuBarInfo = res.data.skuBarInfo;
       this.bottomBar = res.data.bottomBar;
       this.productInfo = new ProductInfoEntity(res.data.itemInfo, res.data.skuInfo, res.data.normalPrice, res.data.promotion, res.data.itemServices);
-
+      this.commentInfo = res.data.rateInfoV2;
     }).catch(err=>{
       console.log(err)
     })
@@ -129,4 +135,9 @@ export default {
     border-bottom: 1px solid #eeeeee;
     margin-left: 15px;
   }
+  .divider {
+    height: 10px;
+    background: #efefef;
+  }
+
 </style>
