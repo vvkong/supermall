@@ -32,8 +32,6 @@ export default {
   computed: {
     createTime() {
       const date = new Date(this.rateItemInfo.created*1000);
-      console.log(date.toString());
-      console.log(this.rateItemInfo.created)
       return `${date.getFullYear()}-${date.getMonth()+1}-${date.getDay()}`;
     }
   }

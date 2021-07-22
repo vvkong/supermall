@@ -10,6 +10,12 @@ export function getGoodsDetail(id) {
   });
 }
 
+export function getRecommendWall() {
+  return request({
+    method: 'GET',
+    url: '/recommend',
+  });
+}
 export class ProductInfoEntity {
   constructor(itemInfo, skuInfo, normalPrice, promotion, itemServices) {
     this.normalPrice = normalPrice;

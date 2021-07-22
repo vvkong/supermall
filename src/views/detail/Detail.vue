@@ -18,6 +18,12 @@
       <div class="divider"></div>
       <CommentView :commentInfo="commentInfo"></CommentView>
       <div class="divider"></div>
+      <ShopInfo :shopInfo="shopInfo"></ShopInfo>
+      <div class="divider"></div>
+      <DetailTab @tab-click="onTabClick"></DetailTab>
+      <DetailInfo ref="detailInfoView" :detailInfo="detailInfo"></DetailInfo>
+      <ItemParams ref="itemparamsView" :itemParams="itemParams"></ItemParams>
+      <RecommendView ref="recommendView"></RecommendView>
     </Scroller>
     <BottomBar class="detail-bottom-bar" :bottomBar="bottomBar"></BottomBar>
     <BackTop @click.native="backTop" v-show="showBackTop"></BackTop>
@@ -35,6 +41,11 @@ import SkuInfoBar from './SkuInfoBar'
 import BottomBar from './BottomBar'
 import ProductInfo from './ProductInfo'
 import CommentView from './CommentView'
+import ShopInfo from './ShopInfo'
+import DetailTab from './DetailTab'
+import DetailInfo from './DetailInfo'
+import ItemParams from './ItemParams'
+import RecommendView from './RecommendView'
 export default {
   name: "Detail",
   components: {
@@ -46,6 +57,11 @@ export default {
     BottomBar,
     ProductInfo,
     CommentView,
+    ShopInfo,
+    DetailTab,
+    DetailInfo,
+    ItemParams,
+    RecommendView,
   },
   data() {
     return {
@@ -59,6 +75,9 @@ export default {
       showBanner: true,
       productInfo: {},
       commentInfo: {},
+      shopInfo: {},
+      detailInfo: {},
+      itemParams: {},
     };
   },
   created() {
@@ -75,6 +94,9 @@ export default {
       this.bottomBar = res.data.bottomBar;
       this.productInfo = new ProductInfoEntity(res.data.itemInfo, res.data.skuInfo, res.data.normalPrice, res.data.promotion, res.data.itemServices);
       this.commentInfo = res.data.rateInfoV2;
+      this.shopInfo = res.data.shopInfo;
+      this.detailInfo = res.data.detailInfo;
+      this.itemParams = res.data.itemParams;
     }).catch(err=>{
       console.log(err)
     })
@@ -88,6 +110,18 @@ export default {
     },
     backTop() {
 
+    },
+    onTabClick(index) {
+      console.log(index);
+      let offset = 0;
+      if( index == 1 ) {
+        offset = this.$refs.itemparamsView.$el.offsetTop;
+      } else if( index == 2 ) {
+        offset = this.$refs.recommendView.$el.offsetTop;
+      } else if( index == 0 ) {
+        offset = this.$refs.detailInfoView.$el.offsetTop;
+      }
+      this.$refs.scroller.scrollTo(0, -offset);
     },
     onSelectSkuEvent(index) {
       this.showBanner = index === -1;

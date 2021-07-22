@@ -1,4 +1,4 @@
-var {index, goods, detail} = require('./data.js');
+var {index, goods, detail, recommendWall} = require('./data.js');
 
 function mockData(app) {
   app.get('/api/index', (req, res) => {
@@ -33,6 +33,14 @@ function mockData(app) {
       code: 0,
       msg: 'success',
       data: detail
+    });
+  });
+  app.get('/api/recommend', (req, res) => {
+    console.log(req.query);
+    res.json({
+      code: 0,
+      msg: 'success',
+      data: recommendWall
     });
   });
 }
