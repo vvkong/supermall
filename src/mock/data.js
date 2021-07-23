@@ -804,6 +804,7 @@ const goods = {
   ],
 };
 
+// https://h5.mogu.com/item-detail/normal.html?itemId=1n0efh0&acm=3.ms.1_1_1n0efh0.46.86084-68998.mLA6HsBrQwXjd.ct_4401-sd_117-swt_46-imt_7-c_2_17_606995427_0_2_0-t_mLA6HsBrQwXjd-lc_17-pit_2-c1_31514_nil_nil_0_0_30_0-dit_-idx_1-dm1_5001&cparam=MTYyNDcxNDk5Ml8xazF6Mmo0Xzk0OTlkYWU1NzEyOWE3YzRiNGQxMzVkOWUwOWMxMWMxXzE3XzFfNjA2OTk1NDI3XzRmODdfMF8yXzBfNzY0XzFfMF9ycy0zMTUxNC5ydC0xLnd0LTA=&ptp=32.rPCjb.undefined.2.uFiSoXaZ
 const detail = {
   "itemInfo": {
       "highPrice": "38.90",

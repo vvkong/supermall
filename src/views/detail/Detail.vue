@@ -32,8 +32,9 @@
 <script>
 import {getGoodsDetail,ProductInfoEntity} from '@/network/detail.js'
 
+import {backTop} from '@/common/mixin.js'
 import Scroller from '@/components/common/scroll/Scroller'
-import BackTop from '@/components/content/BackTop'
+// import BackTop from '@/components/content/BackTop'
 
 import DetailNavBar from './DetailNavBar'
 import DetailSwiper from './DetailSwiper'
@@ -52,7 +53,7 @@ export default {
     Scroller,
     DetailNavBar,
     DetailSwiper,
-    BackTop,
+    // BackTop,
     SkuInfoBar,
     BottomBar,
     ProductInfo,
@@ -63,11 +64,12 @@ export default {
     ItemParams,
     RecommendView,
   },
+  mixins: [backTop],
   data() {
     return {
       id: null,
       banners: [],
-      showBackTop: false,
+      // showBackTop: false,
       skuBarInfo: {},
       topBanner: [],
       bottomBar: {},
@@ -102,15 +104,16 @@ export default {
     })
   },
   methods: {
-    onScroll() {
-
+    onScroll(position, scrollY) {
+      //this.showBackTop = -scrollY > 1000;
+      this.showBackTopIfNeed(scrollY);
     },
     onScrollEnd() {
 
     },
-    backTop() {
-
-    },
+    // backTop() {
+    //   this.$refs.scroller.scrollTo(0,0);
+    // },
     onTabClick(index) {
       console.log(index);
       let offset = 0;
@@ -156,7 +159,7 @@ export default {
     left: 0;
     right: 0;
     top: 40px;
-    bottom: 49px;
+    bottom: 42px;
   }
 
   .detail-bottom-bar {

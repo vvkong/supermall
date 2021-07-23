@@ -25,12 +25,14 @@
 </template>
 
 <script>
+import {backTop} from '@/common/mixin.js'
+
 import NavBar from '@/components/common/navbar/NavBar'
 import Scroller from '@/components/common/scroll/Scroller'
 
 import TabControl from '@/components/content/TabControl'
 import GoodsList from '@/components/content/goods/GoodsList'
-import BackTop from '@/components/content/BackTop'
+// import BackTop from '@/components/content/BackTop'
 
 import HomeSwiper from '@/views/home/HomeSwiper'
 import HomeRecommend from '@/views/home/HomeRecommend'
@@ -43,11 +45,12 @@ export default {
     Scroller,
     TabControl,
     GoodsList,
-    BackTop,
+    // BackTop,
     HomeSwiper,
     HomeRecommend,
     FeatureView,
   },
+  mixins: [backTop],
   data() {
     return {
       banners: [],
@@ -67,7 +70,7 @@ export default {
           data: []
         }
       },
-      showBackTop: false,
+      // showBackTop: false,
       showStikyTabControl: false,
       posY: 0,
     }
@@ -121,9 +124,9 @@ export default {
         this.scroller.scrollTo(0,-this.tabControlEl.offsetTop,0);
       }
     },
-    backTop() {
-      this.scroller.scrollTo(0,0);
-    },
+    // backTop() {
+    //   this.scroller.scrollTo(0,0);
+    // },
     onItemClick(item) {
       this.$router.push('/detail/'+item.id);
     },
@@ -132,7 +135,8 @@ export default {
       this.onScrollEnd(y);
     },
     onScrollEnd(y) {
-      this.showBackTop = -y > 600;
+      //this.showBackTop = -y > 600;
+      this.showBackTopIfNeed(y);
       this.showStikyTabControl = -y >= this.tabControlEl.offsetTop;
     },
     onPullingUp() {
