@@ -25,7 +25,7 @@
       <ItemParams ref="itemparamsView" :itemParams="itemParams"></ItemParams>
       <RecommendView ref="recommendView"></RecommendView>
     </Scroller>
-    <BottomBar class="detail-bottom-bar" :bottomBar="bottomBar"></BottomBar>
+    <BottomBar class="detail-bottom-bar" :bottomBar="bottomBar" @addCart="addCart"></BottomBar>
     <BackTop @click.native="backTop" v-show="showBackTop"></BackTop>
   </div>
 </template>
@@ -104,6 +104,20 @@ export default {
     })
   },
   methods: {
+    addCart() {
+      const product = {
+        image: this.topBanner[0].image,
+        title: this.productInfo.itemInfo.title,
+        desc: this.productInfo.itemInfo.desc,
+        price: this.productInfo.lowPrice,
+        iid: this.productInfo.itemId,
+        count: 1,
+      };
+      console.log(product);
+      // this.$store.state.productList.push(product);
+      //this.$store.commit('addCart', product);
+      this.$store.dispatch('addCart', product);
+    },
     onScroll(position, scrollY) {
       //this.showBackTop = -scrollY > 1000;
       this.showBackTopIfNeed(scrollY);

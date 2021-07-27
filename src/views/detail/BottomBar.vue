@@ -15,7 +15,7 @@
       <span>收藏</span>
     </div>
     <div class="v-line"></div>
-    <div class="btn cart-btn">加入购物车</div>
+    <div class="btn cart-btn" @click="addCart">加入购物车</div>
     <div class="btn buy-btn">立即购买</div>
   </div>
 </template>
@@ -28,7 +28,12 @@ export default {
     default() {
       return {}
     }
-  }
+  },
+  methods: {
+    addCart() {
+      this.$emit('addCart');
+    }
+  },
 
 }
 </script>
