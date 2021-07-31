@@ -37,7 +37,7 @@ export default {
     RateSwiper,
   },
   created() {
-    console.log(this.commentInfo)
+    //console.log(this.commentInfo)
   },
 }
 </script>

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/views/Home.vue'
 import Category from '@/views/Category.vue'
-import Cart from '@/views/Cart.vue'
+import Cart from '@/views/cart/Cart.vue'
 import Profile from '@/views/Profile.vue'
 import Detail from '@/views/detail/Detail.vue'
 
@@ -33,7 +33,7 @@ const routes = [
   {
     path: '/detail/:id',
     component: Detail,
-  }
+  },
 ];
 const router = new Router({
   routes

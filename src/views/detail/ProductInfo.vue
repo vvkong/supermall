@@ -60,7 +60,7 @@ export default {
   created() {
   },
   updated() {
-    console.log(this.productInfo)
+    //console.log(this.productInfo)
   },
 }
 </script>

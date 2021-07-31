@@ -83,7 +83,7 @@ export default {
     };
   },
   created() {
-    console.log(this.$route);
+    //console.log(this.$route);
     this.id = this.$route.params.id;
     getGoodsDetail(this.id).then((res)=>{
       let banners = [];
@@ -109,11 +109,11 @@ export default {
         image: this.topBanner[0].image,
         title: this.productInfo.itemInfo.title,
         desc: this.productInfo.itemInfo.desc,
-        price: this.productInfo.lowPrice,
-        iid: this.productInfo.itemId,
+        price: this.productInfo.itemInfo.lowPrice,
+        // iid: this.productInfo.itemId,
+        iid: this.id,
         count: 1,
       };
-      console.log(product);
       // this.$store.state.productList.push(product);
       //this.$store.commit('addCart', product);
       this.$store.dispatch('addCart', product);
