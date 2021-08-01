@@ -27,13 +27,17 @@
     </Scroller>
     <BottomBar class="detail-bottom-bar" :bottomBar="bottomBar" @addCart="addCart"></BottomBar>
     <BackTop @click.native="backTop" v-show="showBackTop"></BackTop>
+
+    <!-- <Toast :message="message" :show="show"></Toast> -->
   </div>
 </template>
 <script>
 import {getGoodsDetail,ProductInfoEntity} from '@/network/detail.js'
+import {mapActions} from 'vuex'
 
 import {backTop} from '@/common/mixin.js'
 import Scroller from '@/components/common/scroll/Scroller'
+// import Toast from '@/components/common/toast/Toast'
 // import BackTop from '@/components/content/BackTop'
 
 import DetailNavBar from './DetailNavBar'
@@ -63,6 +67,7 @@ export default {
     DetailInfo,
     ItemParams,
     RecommendView,
+    // Toast,
   },
   mixins: [backTop],
   data() {
@@ -80,6 +85,8 @@ export default {
       shopInfo: {},
       detailInfo: {},
       itemParams: {},
+      show: false,
+      message: '',
     };
   },
   created() {
@@ -104,6 +111,9 @@ export default {
     })
   },
   methods: {
+    ...mapActions({
+      realAddToCart: 'addCart',
+    }),
     addCart() {
       const product = {
         image: this.topBanner[0].image,
@@ -116,7 +126,19 @@ export default {
       };
       // this.$store.state.productList.push(product);
       //this.$store.commit('addCart', product);
-      this.$store.dispatch('addCart', product);
+      // this.$store.dispatch('addCart', product);
+      // this.$store.dispatch('addCart', product)
+      //   .then((res)=>{
+      //     console.log('res: ' + res);
+      //   });
+
+      this.realAddToCart(product).then(res=> {
+        // this.show = true;
+        // this.message = res;
+        // setTimeout(()=>this.show=false, 2000);
+
+        this.$toast.show(res, 3000);
+      });
     },
     onScroll(position, scrollY) {
       //this.showBackTop = -scrollY > 1000;
